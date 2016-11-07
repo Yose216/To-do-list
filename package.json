@@ -1,0 +1,14 @@
+{
+    "name": "todolist-Yose",
+    "version": "0.1.0",
+    "dependencies": {
+        "express": "~4.11.0",
+        "ejs": "~2.1.4",
+        "cookie-session": "~1.1.0",
+        "body-parser": "~1.10.1"
+    },
+    "author": "Yose216 <youness.chetoui@gmail.com>",
+    "description": "Un gestionnaire de todolist ultra basique",
+	"repository": "https://github.com/Yose216/To-do-list",
+	"Licence": "Copyright (C) 2016 Yose"
+}
