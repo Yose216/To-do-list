@@ -23,3 +23,10 @@ app.post('/todo/create', function(req, res) {
 app.delete('todo/delete/{id}', function(req, res) {
 
 });
+
+app.use(function(req, res, next){
+    res.setHeader('Content-Type', 'text/plain');
+    res.send(404, 'Page introuvable !');
+});
+
+app.listen(8080);
