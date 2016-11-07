@@ -2,28 +2,30 @@
 
 <html>
     <head>
-        <title>Ma todolist</title>
+        <title>My todolist</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
 		<link rel="stylesheet" href="css/styles.css">
+		<link href="https://fonts.googleapis.com/css?family=Itim" rel="stylesheet">
     </head>
 
     <body>
 		<div class="container-fluid">
-			<h1 class="offset-lg-5">Ma todolist</h1>
+			<h1 class="offset-lg-5">My To-do list</h1>
 
-			<ul>
+			<ul class="boxWhite col-lg-4 offset-lg-4">
 			<% todolist.forEach(function(todo, index) { %>
-				<li class=""><a href="/todo/delete/<%= index %>">✘</a> <%= todo %></li>
+					<li class="col-lg-10 offset-lg-1 todo"><a href="/todo/delete/<%= index %>">✘</a> <%= todo %></li>
 			<% }); %>
 			</ul>
 
-			<form action="/todo/create/" method="post">
-				<p>
-					<label for="newtodo">Que dois-je faire ?</label>
-					<input type="text" name="newtodo" id="newtodo" autofocus />
-					<input type="submit" />
-				</p>
+			<form action="/todo/create/" method="post" class="col-lg-4 offset-lg-4">
+				<div class="col-lg-8">
+					<input class="form-control" type="text" name="newtodo" id="newtodo" placeholder="Add a task!" autofocus />
+				</div>
+				<div class="col-lg-4">
+					<button type="submit" class="btn btn-success">Success</button>
+				</div>
 			</form>
 		</div>
     </body>
