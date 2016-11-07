@@ -5,10 +5,12 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 var app = express();
 
+app.use(express.static('public'));
 
-/* On utilise les sessions */
+// On utilise les sessions
 app.use(session({secret: 'todotopsecret'}))
 
+// Verifie que ya aucune session
 app.use(function(req, res, next){
     if (typeof(req.session.todolist) == 'undefined') {
         req.session.todolist = [];
@@ -16,10 +18,7 @@ app.use(function(req, res, next){
     next();
 })
 
-app.use(express.static('public'));
-
-/* Gestion des routes en-dessous */
-
+// Gestion des routes en-dessous
 app.get('/todo', function(req, res) {
 	res.render('index.ejs', {todolist: req.session.todolist});
 });
@@ -39,7 +38,7 @@ app.get('/todo/delete/:id', function(req, res) {
 })
 
 app.use(function(req, res, next){
-    res.send(404, 'Page introuvable !');
+    res.redirect('/todo');
 });
 
 app.listen(8080);
