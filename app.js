@@ -9,24 +9,36 @@ var app = express();
 /* On utilise les sessions */
 app.use(session({secret: 'todotopsecret'}))
 
+app.use(function(req, res, next){
+    if (typeof(req.session.todolist) == 'undefined') {
+        req.session.todolist = [];
+    }
+    next();
+})
+
 
 /* Gestion des routes en-dessous */
 
 app.get('/todo', function(req, res) {
-
+	res.render('index.ejs', {todolist: req.session.todolist});
 });
 
-app.post('/todo/create', function(req, res) {
-
+app.post('/todo/create', urlencodedParser, function(req, res) {
+	if (req.body.newtodo != '') {
+        req.session.todolist.push(req.body.newtodo);
+    }
+	res.redirect('/todo');
 });
 
-app.delete('todo/delete/{id}', function(req, res) {
-
+app.delete('todo/delete/:id', function(req, res) {
+	if (req.params.id != '') {
+        req.session.todolist.splice(req.params.id, 1);
+    }
+	res.redirect('/todo');
 });
 
-app.use(function(req, res, next){
-    res.setHeader('Content-Type', 'text/plain');
-    res.send(404, 'Page introuvable !');
-});
+//app.use(function(req, res, next){
+//    res.send(404, 'Page introuvable !');
+//});
 
 app.listen(8080);
