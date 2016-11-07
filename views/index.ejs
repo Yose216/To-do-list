@@ -3,26 +3,28 @@
 <html>
     <head>
         <title>Ma todolist</title>
-        <style>
-            a {text-decoration: none; color: black;}
-        </style>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+		<link rel="stylesheet" href="css/styles.css">
     </head>
 
     <body>
-        <h1>Ma todolist</h1>
+		<div class="container-fluid">
+			<h1 class="offset-lg-5">Ma todolist</h1>
 
-        <ul>
-        <% todolist.forEach(function(todo, index) { %>
-            <li><a href="/todo/delete/<%= index %>">✘</a> <%= todo %></li>
-        <% }); %>
-        </ul>
+			<ul>
+			<% todolist.forEach(function(todo, index) { %>
+				<li class=""><a href="/todo/delete/<%= index %>">✘</a> <%= todo %></li>
+			<% }); %>
+			</ul>
 
-        <form action="/todo/create/" method="post">
-            <p>
-                <label for="newtodo">Que dois-je faire ?</label>
-                <input type="text" name="newtodo" id="newtodo" autofocus />
-                <input type="submit" />
-            </p>
-        </form>
+			<form action="/todo/create/" method="post">
+				<p>
+					<label for="newtodo">Que dois-je faire ?</label>
+					<input type="text" name="newtodo" id="newtodo" autofocus />
+					<input type="submit" />
+				</p>
+			</form>
+		</div>
     </body>
 </html>

@@ -16,6 +16,7 @@ app.use(function(req, res, next){
     next();
 })
 
+app.use(express.static('public'));
 
 /* Gestion des routes en-dessous */
 
@@ -30,15 +31,15 @@ app.post('/todo/create', urlencodedParser, function(req, res) {
 	res.redirect('/todo');
 });
 
-app.delete('todo/delete/:id', function(req, res) {
-	if (req.params.id != '') {
+app.get('/todo/delete/:id', function(req, res) {
+    if (req.params.id != '') {
         req.session.todolist.splice(req.params.id, 1);
     }
-	res.redirect('/todo');
-});
+    res.redirect('/todo');
+})
 
-//app.use(function(req, res, next){
-//    res.send(404, 'Page introuvable !');
-//});
+app.use(function(req, res, next){
+    res.send(404, 'Page introuvable !');
+});
 
 app.listen(8080);
